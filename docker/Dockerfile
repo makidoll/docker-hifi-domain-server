@@ -1,0 +1,28 @@
+FROM highfidelity/hifi:18.04
+
+#RUN cd / && \
+#	mkdir -p /etc/hifi/server /root/.local/share/High Fidelity && \
+#	apt-get -y install g++ cmake python3.6 && \ 
+#	/root/vcpkg/bootstrap-vcpkg.sh
+
+# RUN cd / && \
+# 	apt-get -y update && \ 
+# 	apt-get -y install libc6
+
+COPY hifi.conf /etc/supervisor/conf.d/hifi.conf
+COPY domain-server /etc/hifi/server/domain-server
+COPY modify-domain-port.py /etc/hifi/server/modify-domain-port.py
+
+ENV HIFI_DOMAIN_SERVER_HTTP_PORT=40100
+ENV HIFI_DOMAIN_SERVER_HTTPS_PORT=40101
+ENV HIFI_DOMAIN_SERVER_PORT=40102
+ENV HIFI_DOMAIN_SERVER_DTLS_PORT=40103
+
+ENV HIFI_ASSIGNMENT_CLIENT_AUDIO_MIXER_PORT=48000
+ENV HIFI_ASSIGNMENT_CLIENT_AVATAR_MIXER_PORT=48001
+ENV HIFI_ASSIGNMENT_CLIENT_ASSET_SERVER_PORT=48003
+ENV HIFI_ASSIGNMENT_CLIENT_MESSAGES_MIXER_PORT=48004
+ENV HIFI_ASSIGNMENT_CLIENT_ENTITY_SCRIPT_SERVER_PORT=48005
+ENV HIFI_ASSIGNMENT_CLIENT_ENTITIES_SERVER_PORT=48006
+
+CMD python3 /etc/hifi/server/modify-domain-port.py && /usr/bin/supervisord -c /etc/supervisor/conf.d/hifi.conf

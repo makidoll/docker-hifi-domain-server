@@ -1,0 +1,63 @@
+From 1bf0f3eaefb34c6a3eaae3038e0a2b05ad297c96 Mon Sep 17 00:00:00 2001
+From: Maki <mxmcube@gmail.com>
+Date: Sun, 17 Nov 2019 12:27:31 +0000
+Subject: [PATCH] Environment vars for domain server ports
+
+---
+ libraries/networking/src/DomainHandler.h | 40 +++++++++++++++++++++---
+ 1 file changed, 36 insertions(+), 4 deletions(-)
+
+diff --git a/libraries/networking/src/DomainHandler.h b/libraries/networking/src/DomainHandler.h
+index fb18866001..7d6afa637b 100644
+--- a/libraries/networking/src/DomainHandler.h
++++ b/libraries/networking/src/DomainHandler.h
+@@ -30,10 +30,42 @@
+ #include "ReceivedMessage.h"
+ #include "NetworkingConstants.h"
+ 
+-const unsigned short DEFAULT_DOMAIN_SERVER_PORT = 40102;
+-const unsigned short DEFAULT_DOMAIN_SERVER_DTLS_PORT = 40103;
+-const quint16 DOMAIN_SERVER_HTTP_PORT = 40100;
+-const quint16 DOMAIN_SERVER_HTTPS_PORT = 40101;
++// START (maki's code) 
++#include <QProcessEnvironment>
++
++const unsigned short DEFAULT_DOMAIN_SERVER_PORT = 
++    QProcessEnvironment::systemEnvironment()
++    .contains("HIFI_DOMAIN_SERVER_PORT")
++        ? QProcessEnvironment::systemEnvironment()
++            .value("HIFI_DOMAIN_SERVER_PORT")
++            .toShort()
++        : 40102;
++
++const unsigned short DEFAULT_DOMAIN_SERVER_DTLS_PORT = 
++    QProcessEnvironment::systemEnvironment()
++    .contains("HIFI_DOMAIN_SERVER_DTLS_PORT")
++        ? QProcessEnvironment::systemEnvironment()
++            .value("HIFI_DOMAIN_SERVER_DTLS_PORT")
++            .toShort()
++        : 40103;
++
++const quint16 DOMAIN_SERVER_HTTP_PORT = 
++    QProcessEnvironment::systemEnvironment()
++    .contains("HIFI_DOMAIN_SERVER_HTTP_PORT")
++        ? QProcessEnvironment::systemEnvironment()
++            .value("HIFI_DOMAIN_SERVER_HTTP_PORT")
++            .toShort()
++        : 40100;
++
++const quint16 DOMAIN_SERVER_HTTPS_PORT = 
++    QProcessEnvironment::systemEnvironment()
++    .contains("HIFI_DOMAIN_SERVER_HTTPS_PORT")
++        ? QProcessEnvironment::systemEnvironment()
++            .value("HIFI_DOMAIN_SERVER_HTTPS_PORT")
++            .toShort()
++        : 40101;
++
++// END (maki's code) 
+ 
+ const int MAX_SILENT_DOMAIN_SERVER_CHECK_INS = 5;
+ 
+-- 
+2.17.1
+
