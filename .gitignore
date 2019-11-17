@@ -1,4 +1,9 @@
 hifi
 vcpkg
+
 docker/domain
 docker/domain-server
+
+compose-generator/node_modules
+compose-generator/package-lock.json
+compose-generator/docker-compose.yml
