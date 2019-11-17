@@ -1,3 +1,4 @@
-cd $(pwd)/hifi/build
-HIFI_VCPKG_BASE=$(pwd)/vcpkg make domain-server assignment-client -j6
-
+#!/bin/bash
+DIR=$(pwd)
+cd $DIR/hifi/build
+HIFI_VCPKG_BASE=$DIR/vcpkg make domain-server -j6

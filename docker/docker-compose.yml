@@ -1,4 +1,4 @@
-version: "3.3"
+version: "2"
 services:
     domain:
         image: makitsune/hifi:0.85.0

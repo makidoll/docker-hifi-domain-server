@@ -1,13 +1,4 @@
-FROM highfidelity/hifi:18.04
-
-#RUN cd / && \
-#	mkdir -p /etc/hifi/server /root/.local/share/High Fidelity && \
-#	apt-get -y install g++ cmake python3.6 && \ 
-#	/root/vcpkg/bootstrap-vcpkg.sh
-
-# RUN cd / && \
-# 	apt-get -y update && \ 
-# 	apt-get -y install libc6
+FROM highfidelity/hifi:0.85.0
 
 COPY hifi.conf /etc/supervisor/conf.d/hifi.conf
 COPY domain-server /etc/hifi/server/domain-server
