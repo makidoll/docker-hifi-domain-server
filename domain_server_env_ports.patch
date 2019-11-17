@@ -27,7 +27,7 @@ index fb18866001..7d6afa637b 100644
 +    .contains("HIFI_DOMAIN_SERVER_PORT")
 +        ? QProcessEnvironment::systemEnvironment()
 +            .value("HIFI_DOMAIN_SERVER_PORT")
-+            .toShort()
++            .toUShort()
 +        : 40102;
 +
 +const unsigned short DEFAULT_DOMAIN_SERVER_DTLS_PORT = 
@@ -35,7 +35,7 @@ index fb18866001..7d6afa637b 100644
 +    .contains("HIFI_DOMAIN_SERVER_DTLS_PORT")
 +        ? QProcessEnvironment::systemEnvironment()
 +            .value("HIFI_DOMAIN_SERVER_DTLS_PORT")
-+            .toShort()
++            .toUShort()
 +        : 40103;
 +
 +const quint16 DOMAIN_SERVER_HTTP_PORT = 
@@ -43,7 +43,7 @@ index fb18866001..7d6afa637b 100644
 +    .contains("HIFI_DOMAIN_SERVER_HTTP_PORT")
 +        ? QProcessEnvironment::systemEnvironment()
 +            .value("HIFI_DOMAIN_SERVER_HTTP_PORT")
-+            .toShort()
++            .toUInt()
 +        : 40100;
 +
 +const quint16 DOMAIN_SERVER_HTTPS_PORT = 
@@ -51,7 +51,7 @@ index fb18866001..7d6afa637b 100644
 +    .contains("HIFI_DOMAIN_SERVER_HTTPS_PORT")
 +        ? QProcessEnvironment::systemEnvironment()
 +            .value("HIFI_DOMAIN_SERVER_HTTPS_PORT")
-+            .toShort()
++            .toUInt()
 +        : 40101;
 +
 +// END (maki's code) 
