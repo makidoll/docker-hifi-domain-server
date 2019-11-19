@@ -1,1 +1,1 @@
-docker push makitsune/hifi:0.85.0
+docker push makitsune/hifi:0.86.0

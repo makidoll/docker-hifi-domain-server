@@ -1,4 +1,4 @@
-FROM highfidelity/hifi:0.85.0
+FROM highfidelity/hifi:0.86.0
 
 COPY hifi.conf /etc/supervisor/conf.d/hifi.conf
 COPY domain-server /etc/hifi/server/domain-server
