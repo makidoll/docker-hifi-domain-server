@@ -56,13 +56,13 @@ Object.keys(config.domains).forEach(name => {
 		mem_reservation: "2g", 
 		*/
 
-		/*deploy: {
+		deploy: {
 			resources: {
 				limits: {
-					memory: "2G"
-				}
-			}
-		}*/
+					memory: "2g",
+				},
+			},
+		},
 	};
 });
 
